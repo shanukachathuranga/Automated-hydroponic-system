@@ -1,0 +1,93 @@
+//connect to wifi
+void connectWifi()
+
+//check wifi status
+void checkWifiStatus()
+
+// Get total disolved solids in ppm
+float getTDSvalue()
+
+// get pH value
+float getPHValue()
+
+// get liquid temperature
+float getLiquidTempValue()
+
+// get air humidity and temperature
+void getHumidityAndTemp(float arr[])
+
+//send data to firebase
+void sendSensorJsonData(float arr[6])
+
+// get json data from firebase
+void getSensorJsonData(float arr[])
+
+// preset fetch from firebase
+void getPresetValue(float arr[])
+
+// get systemControl data from firebase
+void getSystemControlData(bool arr[])
+
+//send system control data
+void sendSystemControlData(int index, bool value)
+
+// get water level
+float getWaterLevel()
+
+//get current time
+void getCurrentTime(int arr[])
+
+// relay handler off
+void relayHandlerOFF(int pin)
+
+// relay handler on
+void relayHandlerON(int pin)
+
+// preset fetch from firebase
+void getPresetValue(float arr[])
+
+// count time
+void countTime(int currentHr, int currentMin, int addMins, int arr[])
+
+//relay data-----------------------------------------------------------------------------------------------
+#define PH_UP_PUMP 46		*add timer
+#define PH_DOWN_PUMP 9		*add timer
+#define WATER_PUMP 10		*done
+#define GROW_LIGHT 11		*done
+#define FERTILIZER_PUMP 12	*add timer
+#define SOLENOID 13		*done
+
+//sensor data declaration-----------------------------------------------------------------------------------
+float tdsVal;              //total dissolved solids (ppm)
+float pHVal;               //pH value
+float liquidTemp;          //Liquid Temperature Value
+float waterLevel;                     // water level
+float humidityAndTemperatureArr[2];  //Humidity and temperature value DHT11 [temp,humidity]
+float firebaseSendData[6]; // firebase send data array [ph,tds,liqTemp,airTemp,humidity,distance]
+float firebaseGetData[6];  // firebase get data array  [ph,tds,liqTemp,airTemp,humidity,distance]
+int dateTimeArr[4]; // [hour,minute,month,day]
+bool sysControlData[6]; //[fertilizer,growlight,phMotorDown,phMotorUp,solenoid,waterMotor]
+float presetDataArr[9];   //[pH,tdsMin,tdsMax,lcStartHr,lcEndHr,pcStartHr,pcEndHr,pcOnDuration,pcOffDuration]
+
+//limit values---------------------------------------------------------------------------------------------
+const float minWaterLevel = 20;
+const float maxWaterLevel = 100;
+float tdsMin = presetDataArr[1];
+float tdsMax = presetDataArr[2];
+float lcStartHr = presetDataArr[3];
+float lcEndHr = presetDataArr[4];
+float pHmin = presetDataArr[0] - 0.5;
+float pHmax = presetDataArr[0] + 0.5;
+bool isWaterFilling = false;
+float pcStartHr = presetDataArr[5];
+float pcEndtHr = presetDataArr[6];
+float pcOnDuration = presetDataArr[7];
+float pcOffDuration = presetDataArr[8];
+float pumpOnCountTime[2]; // for countTime() function [hr, minutes]
+float pumpOffCountTime[2]; // for countTime() function [hr, minutes]
+unsigned long phUpRunningInterval = 5000;
+unsigned long phUpEndingMillis = 0;
+unsigned long phDownRunningInterval = 5000;
+unsigned long phDownEndingMillis = 0;
+unsigned long fertilizerPumpRunningInterval = 10000;
+unsigned long fertilizerPumpEndingMillis = 0;

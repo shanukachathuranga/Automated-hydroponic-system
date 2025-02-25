@@ -1,0 +1,37 @@
+{
+  "presets": {
+    "lightEndTime": 20,
+    "lightStartTime": 6,
+    "pH": 9,
+    "pumpEndTime": 18,
+    "pumpOffDuration": 45,
+    "pumpOnDuration": 15,
+    "pumpStartTime": 8,
+    "tdsMax": 1000,
+    "tdsMin": 600
+  },
+  "sensorData": {
+    "airTemp": 0,
+    "distance": 124.57143,
+    "humidity": 0,
+    "liquidTemp": -127,
+    "pH": 0,
+    "tds": 409.69965
+  },
+  "systemActivity": {
+    "fertilizer": true,
+    "growLight": false,
+    "phMotorDown": false,
+    "phMotorUp": true,
+    "solenoid": false,
+    "waterMotor": true
+  },
+  "systemControl": {
+    "fertilizer": false,
+    "growLight": true,
+    "phMotorDown": false,
+    "phMotorUp": false,
+    "solenoid": false,
+    "waterMotor": true
+  }
+}
